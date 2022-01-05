@@ -9,4 +9,11 @@ environment:
 #   path: ^1.8.0
 
 dev_dependencies:
+  json_serializable: ^6.1.3
   lints: ^1.0.0
+
+dependencies: 
+  cryptography: ^2.0.5
+  get_it: ^7.2.0
+  json_annotation: ^4.4.0
+  meta: ^1.7.0
