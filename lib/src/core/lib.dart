@@ -8,3 +8,4 @@ part 'lib.g.dart';
 part 'raw.dart';
 part 'transaction.dart';
 part 'wallet.dart';
+part 'node.dart';
