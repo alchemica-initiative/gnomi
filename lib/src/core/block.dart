@@ -22,12 +22,21 @@ class BlockConfirmation {
   Map<String, dynamic> toJson() => _$BlockConfirmationToJson(this);
 }
 
+@JsonEnum()
+enum BlockStatus {
+  pending,
+  sent,
+  confirmed,
+}
+
 @immutable
 @JsonSerializable()
 class Block {
   final String id;
 
   final String parentId;
+
+  final BlockStatus status;
 
   final List<Transaction> included;
 
@@ -36,6 +45,7 @@ class Block {
   const Block({
     required this.id,
     required this.parentId,
+    required this.status,
     required this.included,
     required this.confirmations,
   });
