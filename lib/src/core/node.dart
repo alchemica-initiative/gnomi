@@ -11,5 +11,9 @@ abstract class GnomiNode extends Wallet {
     dynamic data,
   });
 
+  List<Block> add(List<Block> blocks);
+
   Transaction? fetchTransaction(String id);
+
+  Block? fetchBlock(String id);
 }

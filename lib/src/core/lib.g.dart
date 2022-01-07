@@ -27,3 +27,35 @@ Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
       'data': instance.data,
       'signature': const ByteListRawConverter().toJson(instance.signature),
     };
+
+BlockConfirmation _$BlockConfirmationFromJson(Map<String, dynamic> json) =>
+    BlockConfirmation(
+      confirmer:
+          const WalletRawConverter().fromJson(json['confirmer'] as String),
+      signature:
+          const ByteListRawConverter().fromJson(json['signature'] as String),
+    );
+
+Map<String, dynamic> _$BlockConfirmationToJson(BlockConfirmation instance) =>
+    <String, dynamic>{
+      'confirmer': const WalletRawConverter().toJson(instance.confirmer),
+      'signature': const ByteListRawConverter().toJson(instance.signature),
+    };
+
+Block _$BlockFromJson(Map<String, dynamic> json) => Block(
+      id: json['id'] as String,
+      parentId: json['parentId'] as String,
+      included: (json['included'] as List<dynamic>)
+          .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      confirmations: (json['confirmations'] as List<dynamic>)
+          .map((e) => BlockConfirmation.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$BlockToJson(Block instance) => <String, dynamic>{
+      'id': instance.id,
+      'parentId': instance.parentId,
+      'included': instance.included,
+      'confirmations': instance.confirmations,
+    };
