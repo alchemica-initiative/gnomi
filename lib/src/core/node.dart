@@ -3,7 +3,7 @@ part of dev.alchemica.gnomi.core;
 abstract class GnomiNode extends Wallet {
   GnomiNode(String address) : super(address);
 
-  bool send({
+  bool commit({
     required Wallet from,
     required Wallet to,
     double amount = 0,
