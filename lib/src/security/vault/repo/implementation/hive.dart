@@ -1,5 +1,12 @@
 part of dev.alchemica.gnomi.security.vault;
 
+@Injectable(as: KeyVaultRepository)
+class HiveKeyVaultRepositoryFactory extends KeyVaultRepositoryFactory {
+  @override
+  KeyVaultRepository create([String? password]) =>
+      HiveKeyVaultRepository(password);
+}
+
 class HiveKeyVaultRepository extends KeyVaultRepository {
   static const String _kRemoteBoxName = 'gnomi-key-vault-remote';
   static const String _kOwnedBoxName = 'gnomi-key-vault-owned';
@@ -57,6 +64,12 @@ class HiveKeyVaultRepository extends KeyVaultRepository {
 
     await remoteBox.putAll(rawRemote);
     await ownedBox.putAll(rawOwned);
+  }
+
+  @override
+  Future<void> reset() async {
+    await Hive.deleteBoxFromDisk(_kRemoteBoxName);
+    await Hive.deleteBoxFromDisk(_kOwnedBoxName);
   }
 
   Future<Box> _openBox(String name) async {
