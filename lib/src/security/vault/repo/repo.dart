@@ -1,7 +1,11 @@
 part of dev.alchemica.gnomi.security.vault;
 
 abstract class KeyVaultRepository {
-  void store(Map<String, KeyRecord> records);
+  final String? password;
 
-  Map<String, KeyRecord> retrieve();
+  KeyVaultRepository([this.password]);
+
+  Future<void> store(Map<String, KeyRecord> records);
+
+  Future<Map<String, KeyRecord>> retrieve();
 }
