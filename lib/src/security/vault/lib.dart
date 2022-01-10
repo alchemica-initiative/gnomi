@@ -12,4 +12,6 @@ part 'vault.dart';
 
 part 'repo/converter.dart';
 
+part 'repo/repo.dart';
+
 part 'lib.g.dart';
